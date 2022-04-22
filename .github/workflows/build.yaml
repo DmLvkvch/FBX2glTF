@@ -97,15 +97,11 @@ jobs:
             thirdparty-license.rtf
             LICENSE
             FBX2glTF.exe
-      - name: upload win artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: FBX2glTF.exe
-          asset_name: FBX2glTF.exe
-          asset_content_type: application/octet-stream
+      - name: Step 3 - Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with: 
+          name: FBX2glTF.exe
+          path: FBX2glTF.exe
       - name: FBX2glTF.exe
         uses: actions/upload-artifact@v3
         with:
@@ -207,15 +203,11 @@ jobs:
             thirdparty-license.txt
             LICENSE
             FBX2glTF
-      - name: upload lin artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: FBX2glTF
-          asset_name: FBX2glTF
-          asset_content_type: application/octet-stream            
+      - name: Step 3 - Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with: 
+          name: FBX2glTF
+          path: FBX2glTF         
       - name: Archive results
         uses: actions/upload-artifact@v3
         with:
@@ -326,15 +318,11 @@ jobs:
             LICENSE
             FBX2glTF-macos-x86_64
 
-      - name: upload lin artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: FBX2glTF-macos-x86_64
-          asset_name: FBX2glTF-macos-x86_64
-          asset_content_type: application/octet-stream   
+      - name: Step 3 - Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with: 
+          name: FBX2glTF-macos-x86_64
+          path: FBX2glTF-macos-x86_64   
 
       - name: FBX2glTF-macos-x86_64
         uses: actions/upload-artifact@v3
