@@ -868,6 +868,7 @@ ModelData* Raw2Gltf(
             auto skin = *gltf->skins.hold(new SkinData(jointIndexes, *accIBM, skeletonRoot));
             nodeData->SetSkin(skin.ix);
           }
+        }
       }
     }
 
