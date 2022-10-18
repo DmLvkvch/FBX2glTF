@@ -854,6 +854,20 @@ ModelData* Raw2Gltf(
             nodeData->SetSkin(skin.ix);
           }
         }
+        else {
+          if (nodeData->skin == -1) {
+            // glTF uses column-major matrices
+            std::vector<Mat4f> inverseBindMatrices;
+            for (const auto& inverseBindMatrice : rawSurface.inverseBindMatrices) {
+              inverseBindMatrices.push_back(inverseBindMatrice.Transpose());
+            }
+            // Write out inverseBindMatrices
+            auto accIBM = gltf->AddAccessorAndView(buffer, GLT_MAT4F, inverseBindMatrices);
+            auto skeletonRoot = require(nodesById, rawSurface.skeletonRootId);
+            std::vector<uint32_t> jointIndexes;
+            auto skin = *gltf->skins.hold(new SkinData(jointIndexes, *accIBM, skeletonRoot));
+            nodeData->SetSkin(skin.ix);
+          }
       }
     }
 
